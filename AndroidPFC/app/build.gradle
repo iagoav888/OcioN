@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.example.myapplicationdeocion'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.example.myapplicationdeocion"
         minSdk 28
-        targetSdk 34
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -29,7 +30,8 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
