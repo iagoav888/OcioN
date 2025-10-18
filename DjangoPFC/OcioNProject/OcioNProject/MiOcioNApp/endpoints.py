@@ -1,10 +1,11 @@
 import json
 import secrets
 
+from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from MiOcioNApp.models import AppUser
+from MiOcioNApp.models import AppUser, Local
 
 
 @csrf_exempt
@@ -60,3 +61,46 @@ def session(request):
 
     return JsonResponse({"token": token}, status=201)
 
+
+
+
+
+
+def list_locales(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
+
+    locales = Local.objects.all().values("id", "nombre", "ubicacion", "imagen_url")
+    return JsonResponse(list(locales), safe=False)
+
+
+def local_details(request, local_id):
+    if request.method != "GET":
+        return JsonResponse({"error":"Método HTTP no soportado"}, status=405)
+
+    try:
+        local = Local.objects.get(id=local_id)
+        data = {
+            "id": local.id,
+            "nombre": local.nombre,
+            "descripcion": local.descripcion,
+            "ubicacion": local.ubicacion,
+            "imagen_url": local.imagen_url,
+            "playlist_url": local.playlist_url
+        }
+
+        return JsonResponse(data)
+
+    except Local.DoesNotExist:
+        return  JsonResponse({"error": "Local no encontrado"}, status=404)
+
+
+
+def search_locales(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
+
+    query = request.GET.get("query", "")
+    locales = Local.objects.filter(Q(nombre__icontains=query) | Q(descripcion__icontains=query))
+    data = list(locales.values("id", "nombre", "ubicacion", "imagen_url"))
+    return JsonResponse(data, safe=False)
