@@ -34,7 +34,16 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.ViewHolder> 
         holder.tvNombre.setText(local.getNombre());
         holder.tvDireccion.setText(local.getDireccion());
         holder.tvTipo.setText(local.getTipo());
-        Glide.with(holder.itemView.getContext()).load(local.getImagenResId()).into(holder.ivLocal);
+
+        String imageName = local.getImagenResId().replace(".jpg", "").replace(".jpeg", "");
+
+        int resId = holder.itemView.getContext().getResources().getIdentifier(
+                imageName, "drawable", holder.itemView.getContext().getPackageName()
+        );
+
+        Glide.with(holder.itemView.getContext())
+                .load(resId)
+                .into(holder.ivLocal);
     }
 
     @Override
