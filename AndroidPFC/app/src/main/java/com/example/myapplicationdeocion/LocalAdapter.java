@@ -1,5 +1,6 @@
 package com.example.myapplicationdeocion;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +32,12 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Local local = lista.get(position);
+
         holder.tvNombre.setText(local.getNombre());
         holder.tvDireccion.setText(local.getDireccion());
         holder.tvTipo.setText(local.getTipo());
 
         String imageName = local.getImagenResId().replace(".jpg", "").replace(".jpeg", "");
-
         int resId = holder.itemView.getContext().getResources().getIdentifier(
                 imageName, "drawable", holder.itemView.getContext().getPackageName()
         );
@@ -44,6 +45,16 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.ViewHolder> 
         Glide.with(holder.itemView.getContext())
                 .load(resId)
                 .into(holder.ivLocal);
+
+        // Evento de clic: abre DetalleActivity con los datos del local
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DetalleActivity.class);
+            intent.putExtra("nombre", local.getNombre());
+            intent.putExtra("direccion", local.getDireccion());
+            intent.putExtra("tipo", local.getTipo());
+            intent.putExtra("imagen", local.getImagenResId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
