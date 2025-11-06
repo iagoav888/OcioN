@@ -17,7 +17,7 @@ Aplicación móvil Android para descubrir y valorar locales de ocio nocturno en 
 
 ### Commits principales
 
-El proyecto se ha desarrollado de forma constante con commits regulares desde el 3 de octubre de 2024:
+El proyecto se ha desarrollado de forma constante con commits regulares desde el 3 de octubre de 2025:
 
 **Rama `main`:**
 - ✅ Initial commit (3 oct)
