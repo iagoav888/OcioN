@@ -8,6 +8,13 @@ from django.views.decorators.csrf import csrf_exempt
 from MiOcioNApp.models import AppUser, Local
 
 
+# ------------------------------------------------------------
+# Endpoint: register_user
+# Permite registrar un nuevo usuario en la aplicación.
+# Recibe por POST un nombre de usuario y contraseña en JSON,
+# comprueba que no exista ya y lo guarda en la base de datos.
+# Devuelve un mensaje de éxito o un error si falla algo.
+# ------------------------------------------------------------
 @csrf_exempt
 def register_user(request):
     if request.method != "POST":
@@ -31,8 +38,13 @@ def register_user(request):
 
 
 
-
-
+# ------------------------------------------------------------
+# Endpoint: session
+# Gestiona el inicio de sesión de un usuario.
+# Recibe por POST el nombre de usuario y contraseña en JSON,
+# verifica los datos y genera un token de sesión si son correctos.
+# Devuelve el token o un error si los datos no son válidos.
+# ------------------------------------------------------------
 @csrf_exempt
 def session(request):
     if request.method != "POST":
@@ -42,7 +54,6 @@ def session(request):
         data = json.loads(request.body)
         username = data.get("username")
         password = data.get("password")
-
     except:
         return JsonResponse({"error": "Solicitud inválida"}, status=400)
 
@@ -54,7 +65,6 @@ def session(request):
     if user.password != password:
         return JsonResponse({"error": "Contraseña incorrecta"}, status=403)
 
-
     token = secrets.token_hex(32)
     user.tokenSessions = token
     user.save()
@@ -63,9 +73,12 @@ def session(request):
 
 
 
-
-
-
+# ------------------------------------------------------------
+# Endpoint: list_locales
+# Devuelve un listado con todos los locales registrados.
+# Se accede mediante GET y devuelve los campos principales
+# (id, nombre, ubicación e imagen) en formato JSON.
+# ------------------------------------------------------------
 def list_locales(request):
     if request.method != "GET":
         return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
@@ -74,6 +87,13 @@ def list_locales(request):
     return JsonResponse(list(locales), safe=False)
 
 
+
+# ------------------------------------------------------------
+# Endpoint: local_details
+# Muestra los detalles de un local específico.
+# Se accede mediante GET pasando el id del local en la URL.
+# Devuelve la información completa del local o error si no existe.
+# ------------------------------------------------------------
 def local_details(request, local_id):
     if request.method != "GET":
         return JsonResponse({"error":"Método HTTP no soportado"}, status=405)
@@ -96,6 +116,12 @@ def local_details(request, local_id):
 
 
 
+# ------------------------------------------------------------
+# Endpoint: search_locales
+# Permite buscar locales por nombre o descripción.
+# Se usa con el método GET y el parámetro 'query' en la URL.
+# Devuelve una lista de locales que coinciden con la búsqueda.
+# ------------------------------------------------------------
 def search_locales(request):
     if request.method != "GET":
         return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
