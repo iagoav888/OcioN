@@ -27,6 +27,7 @@ class Local(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True, null=True)
     ubicacion = models.CharField(max_length=250)
+    tipo = models.CharField(max_length=50, default='Local')
     imagen_url = models.URLField(blank=True, null=True)
     playlist_url = models.URLField(blank=True, null=True)
 
