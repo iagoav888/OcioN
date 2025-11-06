@@ -95,6 +95,7 @@ def list_locales(request):
         "nombre",
         "descripcion",
         "ubicacion",
+        "tipo",
         "imagen_url",
         "playlist_url"
     )
@@ -118,6 +119,7 @@ def local_details(request, local_id):
             "nombre": local.nombre,
             "descripcion": local.descripcion,
             "ubicacion": local.ubicacion,
+            "tipo": local.tipo,
             "imagen_url": local.imagen_url,
             "playlist_url": local.playlist_url
         }
@@ -142,5 +144,5 @@ def search_locales(request):
     locales = Local.objects.filter(
         Q(nombre__icontains=query) | Q(descripcion__icontains=query)
     )
-    data = list(locales.values("id", "nombre", "ubicacion", "imagen_url"))
+    data = list(locales.values("id", "nombre", "ubicacion", "tipo", "imagen_url"))
     return JsonResponse(data, safe=False)
