@@ -1,0 +1,61 @@
+# =========================
+# ARCHIVOS DE PYTHON / DJANGO
+# =========================
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.DS_Store
+*.env
+.env
+.vscode/
+.idea/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+*.mo
+*.bak
+local_settings.py
+
+# =========================
+# ARCHIVOS DE ANDROID / GRADLE
+# =========================
+.gradle/
+**/build/
+**/captures/
+**/.externalNativeBuild/
+**/.cxx/
+**/local.properties
+**/intermediates/
+**/outputs/
+*.iml
+.gradle/
+.idea/
+*.apk
+*.ap_
+*.dex
+*.class
+*.jar
+*.keystore
+*.so
+
+# =========================
+# ARCHIVOS DE WINDOWS
+# =========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# GIT / OTROS
+# =========================
+
+*.swp
+*.swo
