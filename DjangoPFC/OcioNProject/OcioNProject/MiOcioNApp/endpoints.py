@@ -24,7 +24,7 @@ def register_user(request):
         data = json.loads(request.body)
         username = data.get("username")
         password = data.get("password")
-    except:
+    except json.JSONDecodeError:
         return JsonResponse({"error": "Solicitud inválida"}, status=400)
 
     if not username or not password:
@@ -33,9 +33,12 @@ def register_user(request):
     if AppUser.objects.filter(username=username).exists():
         return JsonResponse({"error": "El nombre de usuario ya existe"}, status=400)
 
-    AppUser.objects.create(username=username, password=password)
-    return JsonResponse({"mensaje":"Usuario registrado correctamente"}, status=201)
+    # TODO: En producción usar hash para la contraseña
+    # from django.contrib.auth.hashers import make_password
+    # password = make_password(password)
 
+    AppUser.objects.create(username=username, password=password)
+    return JsonResponse({"mensaje": "Usuario registrado correctamente"}, status=201)
 
 
 # ------------------------------------------------------------
@@ -54,7 +57,7 @@ def session(request):
         data = json.loads(request.body)
         username = data.get("username")
         password = data.get("password")
-    except:
+    except json.JSONDecodeError:
         return JsonResponse({"error": "Solicitud inválida"}, status=400)
 
     user = AppUser.objects.filter(username=username).first()
@@ -62,9 +65,14 @@ def session(request):
     if user is None:
         return JsonResponse({"error": "Usuario no encontrado"}, status=404)
 
+    # TODO: En producción usar check_password para contraseñas hasheadas
+    # from django.contrib.auth.hashers import check_password
+    # if not check_password(password, user.password):
+
     if user.password != password:
         return JsonResponse({"error": "Contraseña incorrecta"}, status=403)
 
+    # Generar token de sesión único
     token = secrets.token_hex(32)
     user.tokenSessions = token
     user.save()
@@ -72,20 +80,25 @@ def session(request):
     return JsonResponse({"token": token}, status=201)
 
 
-
 # ------------------------------------------------------------
 # Endpoint: list_locales
 # Devuelve un listado con todos los locales registrados.
 # Se accede mediante GET y devuelve los campos principales
-# (id, nombre, ubicación e imagen) en formato JSON.
+# en formato JSON.
 # ------------------------------------------------------------
 def list_locales(request):
     if request.method != "GET":
         return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
 
-    locales = Local.objects.all().values("id", "nombre", "ubicacion", "imagen_url")
+    locales = Local.objects.all().values(
+        "id",
+        "nombre",
+        "descripcion",
+        "ubicacion",
+        "imagen_url",
+        "playlist_url"
+    )
     return JsonResponse(list(locales), safe=False)
-
 
 
 # ------------------------------------------------------------
@@ -96,7 +109,7 @@ def list_locales(request):
 # ------------------------------------------------------------
 def local_details(request, local_id):
     if request.method != "GET":
-        return JsonResponse({"error":"Método HTTP no soportado"}, status=405)
+        return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
 
     try:
         local = Local.objects.get(id=local_id)
@@ -112,8 +125,7 @@ def local_details(request, local_id):
         return JsonResponse(data)
 
     except Local.DoesNotExist:
-        return  JsonResponse({"error": "Local no encontrado"}, status=404)
-
+        return JsonResponse({"error": "Local no encontrado"}, status=404)
 
 
 # ------------------------------------------------------------
@@ -127,6 +139,8 @@ def search_locales(request):
         return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
 
     query = request.GET.get("query", "")
-    locales = Local.objects.filter(Q(nombre__icontains=query) | Q(descripcion__icontains=query))
+    locales = Local.objects.filter(
+        Q(nombre__icontains=query) | Q(descripcion__icontains=query)
+    )
     data = list(locales.values("id", "nombre", "ubicacion", "imagen_url"))
     return JsonResponse(data, safe=False)
