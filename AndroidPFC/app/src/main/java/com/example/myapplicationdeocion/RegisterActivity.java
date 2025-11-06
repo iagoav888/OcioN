@@ -42,49 +42,67 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = username.getText().toString().trim();
-                String pass = password.getText().toString().trim();
-                String passR = passwordRepeat.getText().toString().trim();
-
-                if (user.isEmpty() || pass.isEmpty() || passR.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!pass.equals(passR)) {
-                    Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("username", user);
-                    obj.put("password", pass);
-
-                    JsonObjectRequest request = new JsonObjectRequest(
-                            Request.Method.POST,
-                            "http://10.0.2.2:8000/users",
-                            obj,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(RegisterActivity.this, "Error al hacer registro", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                    );
-
-                    queue.add(request);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(RegisterActivity.this, "Error al crear la solicitud", Toast.LENGTH_SHORT).show();
-                }
+                realizarRegistro();
             }
         });
+    }
+
+    // Registrar nuevo usuario en el servidor
+    private void realizarRegistro() {
+        String user = username.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+        String passR = passwordRepeat.getText().toString().trim();
+
+        // Validaciones básicas
+        if (user.isEmpty() || pass.isEmpty() || passR.isEmpty()) {
+            Toast.makeText(RegisterActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!pass.equals(passR)) {
+            Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            // Crear JSON con los datos del usuario
+            JSONObject obj = new JSONObject();
+            obj.put("username", user);
+            obj.put("password", pass);
+
+            // Enviar petición al servidor
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "http://10.0.2.2:8000/users",
+                    obj,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
+
+                            // Volver al login después de registrarse
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            if (error.networkResponse != null && error.networkResponse.statusCode == 400) {
+                                Toast.makeText(RegisterActivity.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Error al hacer registro", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+            );
+
+            queue.add(request);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(RegisterActivity.this, "Error al crear la solicitud", Toast.LENGTH_SHORT).show();
+        }
     }
 }

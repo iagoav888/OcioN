@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permisos necesarios para la app -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,15 +18,40 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <activity android:name=".MainActivity" android:exported="true"/>
-        <activity android:name=".RegisterActivity" android:exported="true"/>
-        <activity android:name=".StartActivity" android:exported="true"/>
-        <activity android:name=".LoginActivity" android:exported="true">
+        <!-- StartActivity: Activity inicial que decide dónde ir -->
+        <activity
+            android:name=".StartActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplicationDeOcioN">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- LoginActivity: Pantalla de inicio de sesión -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- RegisterActivity: Pantalla de registro -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- MainActivity: Pantalla principal con lista de locales -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- DetalleActivity: Pantalla de detalles del local -->
+        <activity
+            android:name=".DetalleActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
     </application>
+
 </manifest>

@@ -2,6 +2,7 @@ package com.example.myapplicationdeocion;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,10 +11,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class DetalleActivity extends AppCompatActivity {
 
-    private TextView tvNombreDetalle, tvDireccionDetalle, tvTipoDetalle, tvDescripcionDetalle;
+    private static final String TAG = "DetalleActivity";
+    private TextView tvNombreDetalle, tvUbicacionDetalle, tvTipoDetalle, tvDescripcionDetalle;
     private ImageView ivLocalDetalle;
     private ImageButton btnPlayPause;
     private MediaPlayer mediaPlayer;
@@ -25,37 +28,80 @@ public class DetalleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle);
 
         tvNombreDetalle = findViewById(R.id.tvNombreDetalle);
-        tvDireccionDetalle = findViewById(R.id.tvDireccionDetalle);
+        tvUbicacionDetalle = findViewById(R.id.tvDireccionDetalle);
         tvTipoDetalle = findViewById(R.id.tvTipoDetalle);
         tvDescripcionDetalle = findViewById(R.id.tvDescripcionDetalle);
         ivLocalDetalle = findViewById(R.id.ivLocalDetalle);
         btnPlayPause = findViewById(R.id.btnPlayPause);
 
-        // Datos recibidos del intent
+        // Recibir los datos del local desde MainActivity
+        int id = getIntent().getIntExtra("id", -1);
         String nombre = getIntent().getStringExtra("nombre");
-        String direccion = getIntent().getStringExtra("direccion");
+        String descripcion = getIntent().getStringExtra("descripcion");
+        String ubicacion = getIntent().getStringExtra("ubicacion");
         String tipo = getIntent().getStringExtra("tipo");
-        String imagen = getIntent().getStringExtra("imagen");
+        String imagenUrl = getIntent().getStringExtra("imagenUrl");
+        String imagenLocal = getIntent().getStringExtra("imagenLocal");
+        String playlistUrl = getIntent().getStringExtra("playlistUrl");
 
+        // Mostrar los datos en pantalla
         tvNombreDetalle.setText(nombre);
-        tvDireccionDetalle.setText(direccion);
+        tvUbicacionDetalle.setText(ubicacion);
         tvTipoDetalle.setText(tipo);
-        tvDescripcionDetalle.setText("Próximamente: descripción completa del local, precios y eventos.");
 
-        // Carga de imagen con Glide o placeholder
-        if (imagen != null && !imagen.isEmpty()) {
-            String imageName = imagen.replace(".jpg", "").replace(".jpeg", "");
+        if (descripcion != null && !descripcion.isEmpty()) {
+            tvDescripcionDetalle.setText(descripcion);
+        } else {
+            tvDescripcionDetalle.setText("Próximamente: descripción completa del local, precios y eventos.");
+        }
+
+        cargarImagen(imagenUrl, imagenLocal);
+        inicializarReproductor(playlistUrl);
+    }
+
+    // Cargar imagen desde servidor o desde drawable
+    private void cargarImagen(String imagenUrl, String imagenLocal) {
+        if (imagenUrl != null && !imagenUrl.isEmpty()) {
+            // Cargar desde el servidor
+            Log.d(TAG, "Cargando imagen desde servidor: " + imagenUrl);
+            Glide.with(this)
+                    .load(imagenUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.error_image)
+                    .into(ivLocalDetalle);
+
+        } else if (imagenLocal != null && !imagenLocal.isEmpty()) {
+            // Cargar desde drawable
+            String imageName = imagenLocal.replace(".jpg", "").replace(".jpeg", "");
             int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
-            Glide.with(this).load(resId).into(ivLocalDetalle);
+
+            Log.d(TAG, "Cargando imagen desde drawable: " + imageName);
+
+            if (resId != 0) {
+                Glide.with(this).load(resId).into(ivLocalDetalle);
+            } else {
+                ivLocalDetalle.setImageResource(R.drawable.placeholder);
+            }
         } else {
             ivLocalDetalle.setImageResource(R.drawable.placeholder);
         }
+    }
 
-        // Reproductor de música (temporal)
+    // Configurar el reproductor de música (por ahora un audio de prueba)
+    private void inicializarReproductor(String playlistUrl) {
+        // TODO: En el futuro usar playlistUrl del servidor
+
         mediaPlayer = MediaPlayer.create(this, R.raw.disco_inferno_edit);
 
+        if (mediaPlayer == null) {
+            btnPlayPause.setEnabled(false);
+            Toast.makeText(this, "Audio no disponible", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Error al crear MediaPlayer");
+            return;
+        }
 
-        // Evento del botón
+        // Botón para reproducir/pausar
         btnPlayPause.setOnClickListener(v -> {
             if (isPlaying) {
                 mediaPlayer.pause();
@@ -71,6 +117,7 @@ public class DetalleActivity extends AppCompatActivity {
         });
     }
 
+    // Liberar el MediaPlayer cuando se cierre la activity
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -80,6 +127,7 @@ public class DetalleActivity extends AppCompatActivity {
             }
             mediaPlayer.release();
             mediaPlayer = null;
+            Log.d(TAG, "MediaPlayer liberado");
         }
     }
 }

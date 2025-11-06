@@ -12,6 +12,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Comprobar si hay sesión guardada
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
 

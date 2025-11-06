@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Verificar si ya hay sesión
+        // Comprobar si ya hay sesión activa
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
         if (isLoggedIn) {
@@ -55,66 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = username.getText().toString().trim();
-                String pass = password.getText().toString().trim();
-
-                if (user.isEmpty() || pass.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("username", user);
-                    obj.put("password", pass);
-
-                    JsonObjectRequest request = new JsonObjectRequest(
-                            Request.Method.POST,
-                            "http://10.0.2.2:8000/session",
-                            obj,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    try {
-                                        String token = response.getString("token");
-                                        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = prefs.edit();
-                                        editor.putString("token", token);
-                                        editor.putBoolean("isLoggedIn", true);
-                                        editor.apply();
-
-                                        Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(context, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } catch (JSONException e) {
-                                        Toast.makeText(LoginActivity.this, "Error al procesar respuesta", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    if (error.networkResponse != null) {
-                                        int statusCode = error.networkResponse.statusCode;
-                                        if (statusCode == 404) {
-                                            Toast.makeText(LoginActivity.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
-                                        } else if (statusCode == 403) {
-                                            Toast.makeText(LoginActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(LoginActivity.this, "Error de servidor (" + statusCode + ")", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                    );
-
-                    queue.add(request);
-                } catch (JSONException e) {
-                    Toast.makeText(LoginActivity.this, "Error al crear solicitud", Toast.LENGTH_SHORT).show();
-                }
+                realizarLogin();
             }
         });
 
@@ -124,5 +65,79 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(context, RegisterActivity.class));
             }
         });
+    }
+
+    // Método para hacer el login del usuario
+    private void realizarLogin() {
+        String user = username.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+
+        // Validar campos vacíos
+        if (user.isEmpty() || pass.isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            // Crear JSON con las credenciales
+            JSONObject obj = new JSONObject();
+            obj.put("username", user);
+            obj.put("password", pass);
+
+            // Petición POST al servidor
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "http://10.0.2.2:8000/session",
+                    obj,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                // Guardar el token que devuelve el servidor
+                                String token = response.getString("token");
+
+                                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putString("token", token);
+                                editor.putBoolean("isLoggedIn", true);
+                                editor.apply();
+
+                                Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+
+                                // Ir a la pantalla principal
+                                Intent intent = new Intent(context, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            } catch (JSONException e) {
+                                Toast.makeText(LoginActivity.this, "Error al procesar respuesta", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Mostrar diferentes mensajes según el error
+                            if (error.networkResponse != null) {
+                                int statusCode = error.networkResponse.statusCode;
+                                if (statusCode == 404) {
+                                    Toast.makeText(LoginActivity.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
+                                } else if (statusCode == 403) {
+                                    Toast.makeText(LoginActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Error de servidor (" + statusCode + ")", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+            );
+
+            queue.add(request);
+
+        } catch (JSONException e) {
+            Toast.makeText(LoginActivity.this, "Error al crear solicitud", Toast.LENGTH_SHORT).show();
+        }
     }
 }
