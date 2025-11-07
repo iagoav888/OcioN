@@ -32,7 +32,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c0493ec-0f4f-4c2c-9994-aab8857b557c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../DjangoPFC/OcioNProject/OcioNProject/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoPFC/OcioNProject/OcioNProject/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +87,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "android"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
   <component name="RunManager">
