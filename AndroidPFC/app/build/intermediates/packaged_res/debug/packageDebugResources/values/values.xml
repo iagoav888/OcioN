@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="dark_gray">#444444</color>
+    <color name="gray">#777777</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#00897B</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">My ApplicationDeOcioN</string>
+    <string name="imagen_local">Imagen del local</string>
+    <string name="reproducir_musica">Reproducir música</string>
+    <style name="Base.Theme.MyApplicationDeOcioN" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.MyApplicationDeOcioN" parent="Base.Theme.MyApplicationDeOcioN"/>
+</resources>

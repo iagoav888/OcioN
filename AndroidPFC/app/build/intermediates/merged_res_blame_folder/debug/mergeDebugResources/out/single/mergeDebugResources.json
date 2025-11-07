@@ -1,0 +1,138 @@
+[
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_error_image.png.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/error_image.png"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/layout_activity_detalle.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/layout/activity_detalle.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_nouf.jpg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/nouf.jpg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/layout_activity_main.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_twinfin.jpg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/twinfin.jpg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_chaston.jpg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/chaston.jpg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/layout_item_local.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/layout/item_local.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_placeholder.jpg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/placeholder.jpg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_bg_music_button.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/bg_music_button.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_bretema.jpg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/bretema.jpg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/raw_raw.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/raw/raw"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/layout_activity_login.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_ic_pause_white.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/ic_pause_white.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/layout_activity_register.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/layout/activity_register.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_pelicano.jpeg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/pelicano.jpeg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_foto1.jpg.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/foto1.jpg"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/raw_disco_inferno_edit.mp3.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/raw/disco_inferno_edit.mp3"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/drawable_ic_music_note_white.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/drawable/ic_music_note_white.xml"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.myapplicationdeocion.app-debug-33:/xml_backup_rules.xml.flat",
+        "source": "com.example.myapplicationdeocion.app-main-35:/xml/backup_rules.xml"
+    }
+]

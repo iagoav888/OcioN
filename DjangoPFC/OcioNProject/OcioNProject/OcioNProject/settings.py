@@ -105,12 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'es-es'  # Cambiado a español
+TIME_ZONE = 'Europe/Madrid'  # Zona horaria de España
 
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -123,3 +121,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de encoding UTF-8 para la consola
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
