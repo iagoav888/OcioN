@@ -7,7 +7,7 @@ Aplicación móvil Android para descubrir y valorar locales de ocio nocturno en 
 ![Lenguaje](https://img.shields.io/badge/Frontend-Java-orange)
 ![Backend](https://img.shields.io/badge/Backend-Python%20Django-blue)
 ![Commits](https://img.shields.io/badge/Commits-15+-brightgreen)
-![Última actualización](https://img.shields.io/badge/Última%20actualización-Nov%202024-blue)
+![Última actualización](https://img.shields.io/badge/Última%20actualización-Nov%202025-blue)
 
 **👨‍💻 Autor:** Iago Abelleira Vázquez (@iagoav888)  
 **📅 Proyecto:** PFC - 2º DAM 2024/2025  
