@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6t!&5)(#r@gb&8ctqj4=fimq0!3$qk4@$9z(7+hf8p2bfqbwsk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'MiOcioNApp',
     'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-es'  # Cambiado a español
-TIME_ZONE = 'Europe/Madrid'  # Zona horaria de España
+LANGUAGE_CODE = 'es-es'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 USE_TZ = True
@@ -122,6 +124,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configuración de encoding UTF-8 para la consola
+CORS_ALLOW_ALL_ORIGINS = True
+
 import sys
 sys.stdout.reconfigure(encoding='utf-8')

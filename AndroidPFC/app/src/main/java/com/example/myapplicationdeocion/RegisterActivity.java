@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
             // Enviar petición al servidor
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,
-                    "http://10.0.2.2:8000/users",
+                    "http://10.0.2.2:8000/users/",
                     obj,
                     new Response.Listener<JSONObject>() {
                         @Override

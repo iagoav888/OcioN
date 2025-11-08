@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String token = prefs.getString("token", "");
 
-        String url = "http://10.0.2.2:8000/locales";
+        String url = "http://10.0.2.2:8000/locales/";
 
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET,

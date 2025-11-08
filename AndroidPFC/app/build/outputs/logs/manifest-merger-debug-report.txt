@@ -1,15 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-30:12
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:1-57:12
 MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\17f24c8141bf31c0da61eca8fba32203\transformed\glide-4.16.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4d7c2e78a31b575b7c191ad59700d123\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\iagoa\.gradle\caches\8.13\transforms\a44666d967b60d2ed89d1561656a2d9c\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\732cac0739f688cc6f1d78cc5259cb80\transformed\recyclerview-1.3.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\0da83e104251995ec361d9d56e036dcd\transformed\constraintlayout-2.2.1\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\22ddb9c0c44c07aeb028aab4a62fd601\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\81af8b3a58defd63318c8436ee0cfc8a\transformed\appcompat-1.7.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\cd12396007b83f1ced0eebe9dee08d62\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\iagoa\.gradle\caches\8.13\transforms\b561afdecae30b47949bd11d7fb275b5\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.11.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\f50ce37026304e08cdde08bdb3b49acf\transformed\activity-1.11.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\c0eb869a968a2e01a0c514904b3dac7d\transformed\volley-1.2.1\AndroidManifest.xml:2:1-7:12
@@ -18,22 +19,22 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\iag
 MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\iagoa\.gradle\caches\8.13\transforms\655ded64c88ceef37e7d1cd5580375de\transformed\exifinterface-1.3.6\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\2c286dc79a5f16392a2c536d3fd66057\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\f216d17c084daca6135b7abd05777e15\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\882b524cf226cf402f892d2ffc7fc216\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\d5fabd0cdd334bf9ff3de3c58db6fa66\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.5.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\7a6d5b2237dd4cce4d3d523845fcaf96\transformed\transition-1.5.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4d103cfdca637b6604d0a810db1f8fa5\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\6a42312294d94e9347b808f462afe8f2\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\45c2b4c741305feab64d0705f7014f28\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\edbba55b51ae73c1945683d43037b676\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\bb1f64b657d2fbbdc5169210ac10c908\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\c316e0f77a1f0537820481e1a6a2418b\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:17:1-35:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\f12a1dad9ba5e12c4952dca2a34db178\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\edbba55b51ae73c1945683d43037b676\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\14d0482cba917fcbe03f391e5550c10e\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\06a98133b60ccafe2a419db9819e99fc\transformed\core-ktx-1.13.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\432e015cc81072b45460f862fc6e51c6\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\73589d91f4035ee6aa75d3f5d90a4248\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\e3e8db3b1773f5e91797eae3d815d4e4\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\c0ab499a84f8faa4446375250df7701c\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4fe5b51d830bcb77b667d9cce5c02873\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\3f528a2d0b3a09d58915eb489642aeed\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.13.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\407171d975134d17a69eab499616c320\transformed\core-1.13.0\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\6e716075d77f1da41d38f2068e6e2f57\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:2:1-7:12
@@ -61,12 +62,16 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\iagoa\.
 	xmlns:android
 		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:6:5-67
 	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:7:5-79
+	android:name
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:7:22-76
 application
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:7:5-29:19
-INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:7:5-29:19
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:9:5-55:19
+INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:9:5-55:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4d7c2e78a31b575b7c191ad59700d123\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4d7c2e78a31b575b7c191ad59700d123\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\0da83e104251995ec361d9d56e036dcd\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
@@ -88,59 +93,73 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ia
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\407171d975134d17a69eab499616c320\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:16:9-35
 	android:label
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:12:9-41
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:14:9-41
 	android:fullBackupContent
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:10:9-54
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:12:9-54
 	android:roundIcon
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:13:9-54
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:15:9-54
 	tools:targetApi
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:17:9-29
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:19:9-29
 	android:icon
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:11:9-43
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:13:9-43
 	android:allowBackup
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:8:9-35
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:15:9-58
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:17:9-58
 	android:dataExtractionRules
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:9:9-65
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:11:9-65
 	android:usesCleartextTraffic
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:16:9-44
-activity#com.example.myapplicationdeocion.MainActivity
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:19:9-73
-	android:exported
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:19:48-71
-	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:19:19-47
-activity#com.example.myapplicationdeocion.RegisterActivity
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:20:9-77
-	android:exported
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:20:52-75
-	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:20:19-51
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:18:9-44
 activity#com.example.myapplicationdeocion.StartActivity
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:21:9-74
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:22:9-30:20
 	android:exported
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:21:49-72
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:24:13-36
+	android:theme
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:25:13-62
 	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:21:19-48
-activity#com.example.myapplicationdeocion.LoginActivity
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:22:9-27:20
-	android:exported
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:22:49-72
-	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:22:19-48
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:23:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:23:13-26:29
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:26:13-29:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:24:17-69
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:24:25-66
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:25:17-77
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:28:17-77
 	android:name
-		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:25:27-74
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:28:27-74
+activity#com.example.myapplicationdeocion.LoginActivity
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:33:9-36:58
+	android:windowSoftInputMode
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:36:13-55
+	android:exported
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:34:13-42
+activity#com.example.myapplicationdeocion.RegisterActivity
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:39:9-42:58
+	android:windowSoftInputMode
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:42:13-55
+	android:exported
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:40:13-45
+activity#com.example.myapplicationdeocion.MainActivity
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:45:9-47:40
+	android:exported
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:46:13-41
+activity#com.example.myapplicationdeocion.DetalleActivity
+ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:50:9-53:58
+	android:parentActivityName
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:53:13-55
+	android:exported
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:52:13-37
+	android:name
+		ADDED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml:51:13-44
 uses-sdk
 INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\iagoa\Desktop\Proyecto_PFC__2DAM\OcioN\AndroidPFC\app\src\main\AndroidManifest.xml
@@ -149,14 +168,16 @@ MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\iagoa\.gradle\cach
 MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\17f24c8141bf31c0da61eca8fba32203\transformed\glide-4.16.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4d7c2e78a31b575b7c191ad59700d123\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4d7c2e78a31b575b7c191ad59700d123\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\iagoa\.gradle\caches\8.13\transforms\a44666d967b60d2ed89d1561656a2d9c\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\iagoa\.gradle\caches\8.13\transforms\a44666d967b60d2ed89d1561656a2d9c\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\732cac0739f688cc6f1d78cc5259cb80\transformed\recyclerview-1.3.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\732cac0739f688cc6f1d78cc5259cb80\transformed\recyclerview-1.3.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\0da83e104251995ec361d9d56e036dcd\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\0da83e104251995ec361d9d56e036dcd\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\22ddb9c0c44c07aeb028aab4a62fd601\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\22ddb9c0c44c07aeb028aab4a62fd601\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\81af8b3a58defd63318c8436ee0cfc8a\transformed\appcompat-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\81af8b3a58defd63318c8436ee0cfc8a\transformed\appcompat-1.7.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\cd12396007b83f1ced0eebe9dee08d62\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\cd12396007b83f1ced0eebe9dee08d62\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\iagoa\.gradle\caches\8.13\transforms\b561afdecae30b47949bd11d7fb275b5\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\iagoa\.gradle\caches\8.13\transforms\b561afdecae30b47949bd11d7fb275b5\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.11.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\f50ce37026304e08cdde08bdb3b49acf\transformed\activity-1.11.0\AndroidManifest.xml:20:5-44
@@ -173,6 +194,8 @@ MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\iagoa\.gradle\c
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\2c286dc79a5f16392a2c536d3fd66057\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\f216d17c084daca6135b7abd05777e15\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\f216d17c084daca6135b7abd05777e15\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\882b524cf226cf402f892d2ffc7fc216\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\882b524cf226cf402f892d2ffc7fc216\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\d5fabd0cdd334bf9ff3de3c58db6fa66\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\iagoa\.gradle\caches\8.13\transforms\d5fabd0cdd334bf9ff3de3c58db6fa66\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.5.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\7a6d5b2237dd4cce4d3d523845fcaf96\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
@@ -183,14 +206,14 @@ MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\iagoa\.gr
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\6a42312294d94e9347b808f462afe8f2\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\45c2b4c741305feab64d0705f7014f28\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\45c2b4c741305feab64d0705f7014f28\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\edbba55b51ae73c1945683d43037b676\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\edbba55b51ae73c1945683d43037b676\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\bb1f64b657d2fbbdc5169210ac10c908\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\bb1f64b657d2fbbdc5169210ac10c908\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\c316e0f77a1f0537820481e1a6a2418b\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\c316e0f77a1f0537820481e1a6a2418b\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\f12a1dad9ba5e12c4952dca2a34db178\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\f12a1dad9ba5e12c4952dca2a34db178\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\edbba55b51ae73c1945683d43037b676\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\edbba55b51ae73c1945683d43037b676\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\14d0482cba917fcbe03f391e5550c10e\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\iagoa\.gradle\caches\8.13\transforms\14d0482cba917fcbe03f391e5550c10e\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\06a98133b60ccafe2a419db9819e99fc\transformed\core-ktx-1.13.0\AndroidManifest.xml:5:5-44
@@ -203,8 +226,6 @@ MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\iagoa\.gradl
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\e3e8db3b1773f5e91797eae3d815d4e4\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\c0ab499a84f8faa4446375250df7701c\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\c0ab499a84f8faa4446375250df7701c\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4fe5b51d830bcb77b667d9cce5c02873\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\4fe5b51d830bcb77b667d9cce5c02873\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\3f528a2d0b3a09d58915eb489642aeed\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\3f528a2d0b3a09d58915eb489642aeed\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.13.0] C:\Users\iagoa\.gradle\caches\8.13\transforms\407171d975134d17a69eab499616c320\transformed\core-1.13.0\AndroidManifest.xml:20:5-44

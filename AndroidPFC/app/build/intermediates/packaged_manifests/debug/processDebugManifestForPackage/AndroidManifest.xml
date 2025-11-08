@@ -8,7 +8,9 @@
         android:minSdkVersion="28"
         android:targetSdkVersion="36" />
 
+    <!-- Permisos necesarios para la app -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <permission
         android:name="com.example.myapplicationdeocion.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -30,24 +32,41 @@
         android:testOnly="true"
         android:theme="@style/Theme.MyApplicationDeOcioN"
         android:usesCleartextTraffic="true" >
-        <activity
-            android:name="com.example.myapplicationdeocion.MainActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.example.myapplicationdeocion.RegisterActivity"
-            android:exported="true" />
+
+        <!-- StartActivity: Activity inicial que decide dónde ir -->
         <activity
             android:name="com.example.myapplicationdeocion.StartActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.example.myapplicationdeocion.LoginActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.MyApplicationDeOcioN" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- LoginActivity: Pantalla de inicio de sesión -->
+        <activity
+            android:name="com.example.myapplicationdeocion.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- RegisterActivity: Pantalla de registro -->
+        <activity
+            android:name="com.example.myapplicationdeocion.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- MainActivity: Pantalla principal con lista de locales -->
+        <activity
+            android:name="com.example.myapplicationdeocion.MainActivity"
+            android:exported="false" />
+
+        <!-- DetalleActivity: Pantalla de detalles del local -->
+        <activity
+            android:name="com.example.myapplicationdeocion.DetalleActivity"
+            android:exported="false"
+            android:parentActivityName="com.example.myapplicationdeocion.MainActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

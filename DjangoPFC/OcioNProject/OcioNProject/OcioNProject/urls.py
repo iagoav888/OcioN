@@ -21,9 +21,9 @@ from MiOcioNApp import endpoints
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users', endpoints.register_user),
-    path('session', endpoints.session),
-    path('locales', endpoints.list_locales),
-    path('locales/<int:local_id>', endpoints.local_details),
-    path('locales/search', endpoints.search_locales),
+    path('users/', endpoints.register_user),
+    path('session/', endpoints.session),
+    path('locales/', endpoints.list_locales),
+    path('locales/<int:local_id>/', endpoints.local_details),
+    path('locales/search/', endpoints.search_locales),
 ]

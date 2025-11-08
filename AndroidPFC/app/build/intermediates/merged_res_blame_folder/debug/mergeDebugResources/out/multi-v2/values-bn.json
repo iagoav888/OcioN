@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.myapplicationdeocion.app-mergeDebugResources-31:/values-bn/values-bn.xml",
+            "outputFile": "com.example.myapplicationdeocion.app-mergeDebugResources-32:/values-bn/values-bn.xml",
             "map": [
                 {
                     "source": "C:\\Users\\iagoa\\.gradle\\caches\\8.13\\transforms\\407171d975134d17a69eab499616c320\\transformed\\core-1.13.0\\res\\values-bn\\values-bn.xml",
