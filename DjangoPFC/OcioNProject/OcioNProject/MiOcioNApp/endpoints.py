@@ -1,11 +1,12 @@
 import json
 import secrets
+from datetime import datetime
 
 from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from MiOcioNApp.models import AppUser, Local
+from MiOcioNApp.models import AppUser, Local, Review
 
 
 # ------------------------------------------------------------
@@ -145,4 +146,123 @@ def search_locales(request):
         Q(nombre__icontains=query) | Q(descripcion__icontains=query)
     )
     data = list(locales.values("id", "nombre", "ubicacion", "tipo", "imagen_url"))
+    return JsonResponse(data, safe=False)
+
+
+# ------------------------------------------------------------
+# Endpoint: reviews
+# Gestiona las reseñas de los locales.
+# GET: Lista todas las reseñas de un local específico
+# POST: Crea una nueva reseña (requiere autenticación con token)
+# ------------------------------------------------------------
+@csrf_exempt
+def reviews(request, local_id):
+    # GET: Listar reseñas de un local
+    if request.method == "GET":
+        try:
+            local = Local.objects.get(id=local_id)
+        except Local.DoesNotExist:
+            return JsonResponse({"error": "Local no encontrado"}, status=404)
+
+        # Obtener todas las reseñas del local ordenadas por fecha (más recientes primero)
+        reseñas = Review.objects.filter(local=local).order_by('-fecha')
+
+        data = []
+        for review in reseñas:
+            data.append({
+                "id": review.id,
+                "username": review.usuario.username,
+                "contenido": review.contenido,
+                "puntuacion": review.puntuacion,
+                "fecha": review.fecha.strftime("%Y-%m-%d %H:%M:%S")
+            })
+
+        return JsonResponse(data, safe=False)
+
+    # POST: Crear una nueva reseña
+    elif request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            token = data.get("token")
+            contenido = data.get("contenido")
+            puntuacion = data.get("puntuacion")
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Solicitud inválida"}, status=400)
+
+        # Validar campos obligatorios
+        if not token or not contenido or puntuacion is None:
+            return JsonResponse({"error": "Faltan campos obligatorios (token, contenido, puntuacion)"}, status=400)
+
+        # Verificar autenticación
+        user = AppUser.objects.filter(tokenSessions=token).first()
+        if user is None:
+            return JsonResponse({"error": "Token inválido o sesión expirada"}, status=401)
+
+        # Verificar que el local existe
+        try:
+            local = Local.objects.get(id=local_id)
+        except Local.DoesNotExist:
+            return JsonResponse({"error": "Local no encontrado"}, status=404)
+
+        # Validar puntuación (debe estar entre 1 y 5)
+        if not isinstance(puntuacion, int) or puntuacion < 1 or puntuacion > 5:
+            return JsonResponse({"error": "La puntuación debe ser un número entre 1 y 5"}, status=400)
+
+        # Crear la reseña
+        review = Review.objects.create(
+            usuario=user,
+            local=local,
+            contenido=contenido,
+            puntuacion=puntuacion
+        )
+
+        return JsonResponse({
+            "mensaje": "Reseña creada correctamente",
+            "review": {
+                "id": review.id,
+                "username": user.username,
+                "contenido": review.contenido,
+                "puntuacion": review.puntuacion,
+                "fecha": review.fecha.strftime("%Y-%m-%d %H:%M:%S")
+            }
+        }, status=201)
+
+    else:
+        return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
+
+
+# ------------------------------------------------------------
+# Endpoint: user_reviews
+# Devuelve todas las reseñas escritas por el usuario autenticado.
+# Requiere token de autenticación.
+# ------------------------------------------------------------
+def user_reviews(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
+
+    # Obtener token desde parámetros GET
+    token = request.GET.get("token")
+
+    if not token:
+        return JsonResponse({"error": "Token requerido"}, status=401)
+
+    # Verificar autenticación
+    user = AppUser.objects.filter(tokenSessions=token).first()
+    if user is None:
+        return JsonResponse({"error": "Token inválido o sesión expirada"}, status=401)
+
+    # Obtener reseñas del usuario
+    reseñas = Review.objects.filter(usuario=user).order_by('-fecha')
+
+    data = []
+    for review in reseñas:
+        data.append({
+            "id": review.id,
+            "local_nombre": review.local.nombre,
+            "local_id": review.local.id,
+            "contenido": review.contenido,
+            "puntuacion": review.puntuacion,
+            "fecha": review.fecha.strftime("%Y-%m-%d %H:%M:%S")
+        })
+
     return JsonResponse(data, safe=False)
