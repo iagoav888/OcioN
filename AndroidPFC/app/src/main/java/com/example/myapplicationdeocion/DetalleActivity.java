@@ -1,6 +1,7 @@
 package com.example.myapplicationdeocion;
 
-import android.media.MediaPlayer;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -13,16 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.io.IOException;
-
 public class DetalleActivity extends AppCompatActivity {
 
     private static final String TAG = "DetalleActivity";
     private TextView tvNombreDetalle, tvUbicacionDetalle, tvTipoDetalle, tvDescripcionDetalle;
     private ImageView ivLocalDetalle;
     private ImageButton btnPlayPause;
-    private MediaPlayer mediaPlayer;
-    private boolean isPlaying = false;
     private String playlistUrl;
 
     @Override
@@ -30,6 +27,7 @@ public class DetalleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
+        // Inicializar vistas
         tvNombreDetalle = findViewById(R.id.tvNombreDetalle);
         tvUbicacionDetalle = findViewById(R.id.tvDireccionDetalle);
         tvTipoDetalle = findViewById(R.id.tvTipoDetalle);
@@ -37,7 +35,7 @@ public class DetalleActivity extends AppCompatActivity {
         ivLocalDetalle = findViewById(R.id.ivLocalDetalle);
         btnPlayPause = findViewById(R.id.btnPlayPause);
 
-        // Recibir los datos del local desde MainActivity
+        // Obtener datos del Intent
         int id = getIntent().getIntExtra("id", -1);
         String nombre = getIntent().getStringExtra("nombre");
         String descripcion = getIntent().getStringExtra("descripcion");
@@ -47,7 +45,7 @@ public class DetalleActivity extends AppCompatActivity {
         String imagenLocal = getIntent().getStringExtra("imagenLocal");
         playlistUrl = getIntent().getStringExtra("playlistUrl");
 
-        // Mostrar los datos en pantalla
+        // Mostrar información del local
         tvNombreDetalle.setText(nombre);
         tvUbicacionDetalle.setText(ubicacion);
         tvTipoDetalle.setText(tipo);
@@ -59,13 +57,15 @@ public class DetalleActivity extends AppCompatActivity {
         }
 
         cargarImagen(imagenUrl, imagenLocal);
-        inicializarReproductor();
+        configurarBotonMusica();
     }
 
-    // Cargar imagen desde servidor o desde drawable
+    /**
+     * Carga la imagen del local desde el servidor o desde recursos locales
+     */
     private void cargarImagen(String imagenUrl, String imagenLocal) {
         if (imagenUrl != null && !imagenUrl.isEmpty()) {
-            // Cargar desde el servidor
+            // Cargar imagen desde servidor con Glide
             Log.d(TAG, "Cargando imagen desde servidor: " + imagenUrl);
             Glide.with(this)
                     .load(imagenUrl)
@@ -75,11 +75,11 @@ public class DetalleActivity extends AppCompatActivity {
                     .into(ivLocalDetalle);
 
         } else if (imagenLocal != null && !imagenLocal.isEmpty()) {
-            // Cargar desde drawable
+            // Cargar imagen desde drawable
             String imageName = imagenLocal.replace(".jpg", "").replace(".jpeg", "");
             int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
 
-            Log.d(TAG, "Cargando imagen desde drawable: " + imageName);
+            Log.d(TAG, "Cargando imagen local: " + imageName);
 
             if (resId != 0) {
                 Glide.with(this).load(resId).into(ivLocalDetalle);
@@ -91,142 +91,88 @@ public class DetalleActivity extends AppCompatActivity {
         }
     }
 
-    // Configurar el reproductor de música desde URL o archivo local
-    private void inicializarReproductor() {
-        mediaPlayer = new MediaPlayer();
-
-        // Intentar cargar desde URL del servidor
-        if (playlistUrl != null && !playlistUrl.isEmpty()) {
-            Log.d(TAG, "Intentando cargar música desde URL: " + playlistUrl);
-            cargarMusicaDesdeUrl(playlistUrl);
-        } else {
-            // Si no hay URL, usar audio local de respaldo
-            Log.d(TAG, "No hay playlist_url, usando audio local de respaldo");
-            cargarMusicaLocal();
-        }
-
-        configurarBotonPlayPause();
-    }
-
-    // Cargar música desde una URL del servidor
-    private void cargarMusicaDesdeUrl(String url) {
-        try {
-            mediaPlayer.setDataSource(url);
-
-            // Preparar el audio de forma asíncrona
-            mediaPlayer.prepareAsync();
-
-            // Listener para cuando termine de prepararse
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    Log.d(TAG, "Audio desde URL preparado correctamente");
-                    btnPlayPause.setEnabled(true);
-                    Toast.makeText(DetalleActivity.this, "Música lista para reproducir", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            // Listener por si hay error al cargar
-            mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                @Override
-                public boolean onError(MediaPlayer mp, int what, int extra) {
-                    Log.e(TAG, "Error al cargar música desde URL. What: " + what + ", Extra: " + extra);
-                    Toast.makeText(DetalleActivity.this, "Error al cargar música, usando audio local", Toast.LENGTH_SHORT).show();
-
-                    // Si falla, intentar con audio local
-                    mediaPlayer.reset();
-                    cargarMusicaLocal();
-                    return true;
-                }
-            });
-
-        } catch (IOException e) {
-            Log.e(TAG, "IOException al configurar URL: " + e.getMessage());
-            Toast.makeText(this, "Error al cargar música desde servidor", Toast.LENGTH_SHORT).show();
-            cargarMusicaLocal();
-        }
-    }
-
-    // Cargar música desde archivo local (respaldo)
-    private void cargarMusicaLocal() {
-        try {
-            mediaPlayer.reset();
-            mediaPlayer = MediaPlayer.create(this, R.raw.disco_inferno_edit);
-
-            if (mediaPlayer != null) {
-                btnPlayPause.setEnabled(true);
-                Log.d(TAG, "Audio local cargado correctamente");
-            } else {
-                btnPlayPause.setEnabled(false);
-                Toast.makeText(this, "Audio no disponible", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Error al crear MediaPlayer con audio local");
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Error al cargar música local: " + e.getMessage());
-            btnPlayPause.setEnabled(false);
-        }
-    }
-
-    // Configurar el botón de play/pause
-    private void configurarBotonPlayPause() {
+    /**
+     * Configura el botón de música para abrir Spotify
+     */
+    private void configurarBotonMusica() {
         btnPlayPause.setOnClickListener(v -> {
-            if (mediaPlayer == null) {
-                Toast.makeText(this, "Reproductor no disponible", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (isPlaying) {
-                // Pausar
-                mediaPlayer.pause();
-                isPlaying = false;
-                btnPlayPause.setImageResource(R.drawable.ic_music_note_white);
-                Toast.makeText(this, "Música pausada", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "Música pausada");
+            if (playlistUrl != null && !playlistUrl.isEmpty()) {
+                abrirSpotify(playlistUrl);
             } else {
-                // Reproducir
-                mediaPlayer.start();
-                isPlaying = true;
-                btnPlayPause.setImageResource(R.drawable.ic_pause_white);
-                Toast.makeText(this, "Reproduciendo música del local", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "Reproduciendo música");
-            }
-        });
-
-        // Listener para cuando termine la canción
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                isPlaying = false;
-                btnPlayPause.setImageResource(R.drawable.ic_music_note_white);
-                Toast.makeText(DetalleActivity.this, "Reproducción finalizada", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "Reproducción completada");
+                Toast.makeText(this, "No hay playlist disponible para este local", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    // Liberar el MediaPlayer cuando se cierre la activity
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mediaPlayer != null) {
-            if (mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
+    /**
+     * Abre la URL de Spotify (playlist o canción)
+     * Primero intenta abrir la app de Spotify, si no está instalada abre el navegador
+     */
+    private void abrirSpotify(String url) {
+        try {
+            // Convertir URL web de Spotify a URI de Spotify
+            String spotifyUri = convertirUrlAUri(url);
+
+            if (spotifyUri != null) {
+                // Intentar abrir con la app de Spotify
+                Intent spotifyIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(spotifyUri));
+                spotifyIntent.setPackage("com.spotify.music");
+                startActivity(spotifyIntent);
+                Log.d(TAG, "Abriendo Spotify con URI: " + spotifyUri);
+
+            } else {
+                // Si no se puede convertir, abrir URL en navegador
+                abrirEnNavegador(url);
             }
-            mediaPlayer.release();
-            mediaPlayer = null;
-            Log.d(TAG, "MediaPlayer liberado");
+
+        } catch (Exception e) {
+            // Si Spotify no está instalado, abrir en navegador
+            Log.e(TAG, "Spotify no instalado, abriendo en navegador: " + e.getMessage());
+            abrirEnNavegador(url);
         }
     }
 
-    // Pausar música si la app pasa a segundo plano
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mediaPlayer != null && isPlaying) {
-            mediaPlayer.pause();
-            isPlaying = false;
-            btnPlayPause.setImageResource(R.drawable.ic_music_note_white);
-            Log.d(TAG, "Música pausada (onPause)");
+    /**
+     * Convierte URL web de Spotify a URI de Spotify
+     * Ejemplo: https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
+     *       -> spotify:playlist:37i9dQZF1DXcBWIGoYBM5M
+     */
+    private String convertirUrlAUri(String url) {
+        try {
+            if (url.contains("open.spotify.com/playlist/")) {
+                String playlistId = url.split("playlist/")[1].split("\\?")[0];
+                return "spotify:playlist:" + playlistId;
+
+            } else if (url.contains("open.spotify.com/track/")) {
+                String trackId = url.split("track/")[1].split("\\?")[0];
+                return "spotify:track:" + trackId;
+
+            } else if (url.contains("open.spotify.com/album/")) {
+                String albumId = url.split("album/")[1].split("\\?")[0];
+                return "spotify:album:" + albumId;
+            }
+
+            return null;
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error al convertir URL: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Abre la URL de Spotify en el navegador
+     */
+    private void abrirEnNavegador(String url) {
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+            Log.d(TAG, "Abriendo en navegador: " + url);
+            Toast.makeText(this, "Abriendo playlist en navegador", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error al abrir navegador: " + e.getMessage());
+            Toast.makeText(this, "No se puede abrir la URL", Toast.LENGTH_SHORT).show();
         }
     }
 }
