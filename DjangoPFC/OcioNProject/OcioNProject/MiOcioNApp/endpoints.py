@@ -171,7 +171,7 @@ def reviews(request, local_id):
         for review in reseñas:
             data.append({
                 "id": review.id,
-                "username": review.usuario.username,
+                "username": review.user.username,
                 "contenido": review.contenido,
                 "puntuacion": review.puntuacion,
                 "fecha": review.fecha.strftime("%Y-%m-%d %H:%M:%S")
@@ -208,9 +208,9 @@ def reviews(request, local_id):
         if not isinstance(puntuacion, int) or puntuacion < 1 or puntuacion > 5:
             return JsonResponse({"error": "La puntuación debe ser un número entre 1 y 5"}, status=400)
 
-        # Crear la reseña
+        # Crear la reseña (CORREGIDO: user en lugar de usuario)
         review = Review.objects.create(
-            usuario=user,
+            user=user,
             local=local,
             contenido=contenido,
             puntuacion=puntuacion
@@ -251,8 +251,8 @@ def user_reviews(request):
     if user is None:
         return JsonResponse({"error": "Token inválido o sesión expirada"}, status=401)
 
-    # Obtener reseñas del usuario
-    reseñas = Review.objects.filter(usuario=user).order_by('-fecha')
+    # Obtener reseñas del usuario 
+    reseñas = Review.objects.filter(user=user).order_by('-fecha')
 
     data = []
     for review in reseñas:
