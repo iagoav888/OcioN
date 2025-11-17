@@ -67,41 +67,36 @@
                     android:id="@+id/estrella1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@android:drawable/star_big_on"
-                    android:contentDescription="Estrella 1"
-                    app:tint="#F39C12" />
+                    android:src="@android:drawable/star_big_off"
+                    android:contentDescription="Estrella 1" />
 
                 <ImageView
                     android:id="@+id/estrella2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@android:drawable/star_big_on"
-                    android:contentDescription="Estrella 2"
-                    app:tint="#F39C12" />
+                    android:src="@android:drawable/star_big_off"
+                    android:contentDescription="Estrella 2" />
 
                 <ImageView
                     android:id="@+id/estrella3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@android:drawable/star_big_on"
-                    android:contentDescription="Estrella 3"
-                    app:tint="#F39C12" />
+                    android:src="@android:drawable/star_big_off"
+                    android:contentDescription="Estrella 3" />
 
                 <ImageView
                     android:id="@+id/estrella4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@android:drawable/star_big_on"
-                    android:contentDescription="Estrella 4"
-                    app:tint="#F39C12" />
+                    android:src="@android:drawable/star_big_off"
+                    android:contentDescription="Estrella 4" />
 
                 <ImageView
                     android:id="@+id/estrella5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@android:drawable/star_big_on"
-                    android:contentDescription="Estrella 5"
-                    app:tint="#F39C12" />
+                    android:src="@android:drawable/star_big_off"
+                    android:contentDescription="Estrella 5" />
 
             </LinearLayout>
 
