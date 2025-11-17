@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <!-- Imagen del local -->
         <ImageView
             android:id="@+id/ivLocalDetalle"
             android:layout_width="match_parent"
@@ -18,6 +20,7 @@
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/imagen_local" />
 
+        <!-- Nombre del local -->
         <TextView
             android:id="@+id/tvNombreDetalle"
             android:layout_width="wrap_content"
@@ -25,30 +28,37 @@
             android:text="Nombre del Local"
             android:textStyle="bold"
             android:textSize="22sp"
+            android:textColor="#2C3E50"
             android:layout_marginBottom="8dp" />
 
+        <!-- Dirección -->
         <TextView
             android:id="@+id/tvDireccionDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dirección"
             android:textSize="16sp"
+            android:textColor="#34495E"
             android:layout_marginBottom="4dp" />
 
+        <!-- Tipo -->
         <TextView
             android:id="@+id/tvTipoDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tipo"
             android:textSize="16sp"
+            android:textColor="#7F8C8D"
             android:layout_marginBottom="12dp" />
 
+        <!-- Descripción -->
         <TextView
             android:id="@+id/tvDescripcionDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descripción del local"
             android:textSize="15sp"
+            android:textColor="#34495E"
             android:layout_marginBottom="24dp" />
 
         <!-- Botón de música circular y moderno -->
@@ -61,6 +71,76 @@
             android:src="@drawable/ic_music_note_white"
             android:contentDescription="@string/reproducir_musica"
             android:padding="16dp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Línea divisoria -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ==================== SECCIÓN DE RESEÑAS ==================== -->
+
+        <!-- Header de reseñas con contador -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="📝 Reseñas"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#2C3E50" />
+
+            <TextView
+                android:id="@+id/tvContadorReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(0)"
+                android:textSize="16sp"
+                android:textColor="#7F8C8D" />
+
+        </LinearLayout>
+
+        <!-- Botón para escribir reseña -->
+        <Button
+            android:id="@+id/btnEscribirResena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⭐ Escribir Reseña"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:backgroundTint="#3498DB"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- RecyclerView para las reseñas -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Mensaje cuando no hay reseñas -->
+        <TextView
+            android:id="@+id/tvNoReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aún no hay reseñas. ¡Sé el primero en comentar!"
+            android:textSize="14sp"
+            android:textColor="#95A5A6"
+            android:textAlignment="center"
+            android:padding="24dp"
+            android:visibility="gone"
             android:layout_marginBottom="24dp" />
 
     </LinearLayout>

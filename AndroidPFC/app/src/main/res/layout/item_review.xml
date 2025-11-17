@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:contentPadding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header: Usuario y Fecha -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <!-- Icono de usuario -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_launcher_foreground"
+                android:background="@drawable/ic_launcher_background"
+                android:contentDescription="Avatar usuario" />
+
+            <!-- Nombre de usuario y fecha -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/tvUsernameReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuario123"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#2C3E50" />
+
+                <TextView
+                    android:id="@+id/tvFechaReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hace 2 días"
+                    android:textSize="12sp"
+                    android:textColor="#7F8C8D" />
+
+            </LinearLayout>
+
+            <!-- Estrellas (puntuación) -->
+            <LinearLayout
+                android:id="@+id/llEstrellas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/estrella1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/star_big_on"
+                    android:contentDescription="Estrella 1"
+                    app:tint="#F39C12" />
+
+                <ImageView
+                    android:id="@+id/estrella2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/star_big_on"
+                    android:contentDescription="Estrella 2"
+                    app:tint="#F39C12" />
+
+                <ImageView
+                    android:id="@+id/estrella3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/star_big_on"
+                    android:contentDescription="Estrella 3"
+                    app:tint="#F39C12" />
+
+                <ImageView
+                    android:id="@+id/estrella4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/star_big_on"
+                    android:contentDescription="Estrella 4"
+                    app:tint="#F39C12" />
+
+                <ImageView
+                    android:id="@+id/estrella5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/star_big_on"
+                    android:contentDescription="Estrella 5"
+                    app:tint="#F39C12" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Contenido de la reseña -->
+        <TextView
+            android:id="@+id/tvContenidoReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Esta es una reseña de ejemplo del local. Me gustó mucho el ambiente y la música."
+            android:textSize="14sp"
+            android:textColor="#34495E"
+            android:lineSpacingExtra="2dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,33 +1,64 @@
 package com.example.myapplicationdeocion;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetalleActivity extends AppCompatActivity {
 
     private static final String TAG = "DetalleActivity";
     private TextView tvNombreDetalle, tvUbicacionDetalle, tvTipoDetalle, tvDescripcionDetalle;
+    private TextView tvContadorReviews, tvNoReviews;
     private ImageView ivLocalDetalle;
     private ImageButton btnPlayPause;
+    private Button btnEscribirResena;
+    private RecyclerView rvReviews;
     private String playlistUrl;
+    private int localId;
+    private RequestQueue queue;
+    private List<Review> listaReviews;
+    private ReviewAdapter reviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        // Inicializar vistas
+        // Inicializar RequestQueue
+        queue = Volley.newRequestQueue(this);
+        listaReviews = new ArrayList<>();
+
+        // Inicializar vistas básicas
         tvNombreDetalle = findViewById(R.id.tvNombreDetalle);
         tvUbicacionDetalle = findViewById(R.id.tvDireccionDetalle);
         tvTipoDetalle = findViewById(R.id.tvTipoDetalle);
@@ -35,8 +66,19 @@ public class DetalleActivity extends AppCompatActivity {
         ivLocalDetalle = findViewById(R.id.ivLocalDetalle);
         btnPlayPause = findViewById(R.id.btnPlayPause);
 
+        // Inicializar vistas de reseñas
+        tvContadorReviews = findViewById(R.id.tvContadorReviews);
+        tvNoReviews = findViewById(R.id.tvNoReviews);
+        btnEscribirResena = findViewById(R.id.btnEscribirResena);
+        rvReviews = findViewById(R.id.rvReviews);
+
+        // Configurar RecyclerView
+        rvReviews.setLayoutManager(new LinearLayoutManager(this));
+        reviewAdapter = new ReviewAdapter(listaReviews);
+        rvReviews.setAdapter(reviewAdapter);
+
         // Obtener datos del Intent
-        int id = getIntent().getIntExtra("id", -1);
+        localId = getIntent().getIntExtra("id", -1);
         String nombre = getIntent().getStringExtra("nombre");
         String descripcion = getIntent().getStringExtra("descripcion");
         String ubicacion = getIntent().getStringExtra("ubicacion");
@@ -58,6 +100,12 @@ public class DetalleActivity extends AppCompatActivity {
 
         cargarImagen(imagenUrl, imagenLocal);
         configurarBotonMusica();
+        configurarBotonEscribirResena();
+
+        // Cargar reseñas del servidor
+        if (localId != -1) {
+            cargarReviews(localId);
+        }
     }
 
     /**
@@ -65,7 +113,6 @@ public class DetalleActivity extends AppCompatActivity {
      */
     private void cargarImagen(String imagenUrl, String imagenLocal) {
         if (imagenUrl != null && !imagenUrl.isEmpty()) {
-            // Cargar imagen desde servidor con Glide
             Log.d(TAG, "Cargando imagen desde servidor: " + imagenUrl);
             Glide.with(this)
                     .load(imagenUrl)
@@ -75,7 +122,6 @@ public class DetalleActivity extends AppCompatActivity {
                     .into(ivLocalDetalle);
 
         } else if (imagenLocal != null && !imagenLocal.isEmpty()) {
-            // Cargar imagen desde drawable
             String imageName = imagenLocal.replace(".jpg", "").replace(".jpeg", "");
             int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
 
@@ -105,28 +151,22 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
     /**
-     * Abre la URL de Spotify (playlist o canción)
-     * Primero intenta abrir la app de Spotify, si no está instalada abre el navegador
+     * Abre la URL de Spotify
      */
     private void abrirSpotify(String url) {
         try {
-            // Convertir URL web de Spotify a URI de Spotify
             String spotifyUri = convertirUrlAUri(url);
 
             if (spotifyUri != null) {
-                // Intentar abrir con la app de Spotify
                 Intent spotifyIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(spotifyUri));
                 spotifyIntent.setPackage("com.spotify.music");
                 startActivity(spotifyIntent);
                 Log.d(TAG, "Abriendo Spotify con URI: " + spotifyUri);
-
             } else {
-                // Si no se puede convertir, abrir URL en navegador
                 abrirEnNavegador(url);
             }
 
         } catch (Exception e) {
-            // Si Spotify no está instalado, abrir en navegador
             Log.e(TAG, "Spotify no instalado, abriendo en navegador: " + e.getMessage());
             abrirEnNavegador(url);
         }
@@ -134,26 +174,20 @@ public class DetalleActivity extends AppCompatActivity {
 
     /**
      * Convierte URL web de Spotify a URI de Spotify
-     * Ejemplo: https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
-     *       -> spotify:playlist:37i9dQZF1DXcBWIGoYBM5M
      */
     private String convertirUrlAUri(String url) {
         try {
             if (url.contains("open.spotify.com/playlist/")) {
                 String playlistId = url.split("playlist/")[1].split("\\?")[0];
                 return "spotify:playlist:" + playlistId;
-
             } else if (url.contains("open.spotify.com/track/")) {
                 String trackId = url.split("track/")[1].split("\\?")[0];
                 return "spotify:track:" + trackId;
-
             } else if (url.contains("open.spotify.com/album/")) {
                 String albumId = url.split("album/")[1].split("\\?")[0];
                 return "spotify:album:" + albumId;
             }
-
             return null;
-
         } catch (Exception e) {
             Log.e(TAG, "Error al convertir URL: " + e.getMessage());
             return null;
@@ -169,10 +203,160 @@ public class DetalleActivity extends AppCompatActivity {
             startActivity(browserIntent);
             Log.d(TAG, "Abriendo en navegador: " + url);
             Toast.makeText(this, "Abriendo playlist en navegador", Toast.LENGTH_SHORT).show();
-
         } catch (Exception e) {
             Log.e(TAG, "Error al abrir navegador: " + e.getMessage());
             Toast.makeText(this, "No se puede abrir la URL", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Carga las reseñas del servidor
+     */
+    private void cargarReviews(int localId) {
+        String url = "http://10.0.2.2:8000/locales/" + localId + "/reviews/";
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                response -> {
+                    try {
+                        listaReviews.clear();
+
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj = response.getJSONObject(i);
+
+                            Review review = new Review(
+                                    obj.getInt("id"),
+                                    obj.getString("username"),
+                                    obj.getString("contenido"),
+                                    obj.getInt("puntuacion"),
+                                    obj.getString("fecha")
+                            );
+
+                            listaReviews.add(review);
+                        }
+
+                        actualizarUIReviews();
+                        Log.d(TAG, "Reseñas cargadas: " + listaReviews.size());
+
+                    } catch (JSONException e) {
+                        Log.e(TAG, "Error al parsear reseñas: " + e.getMessage());
+                    }
+                },
+                error -> {
+                    Log.e(TAG, "Error al cargar reseñas: " + error.toString());
+                    actualizarUIReviews();
+                }
+        );
+
+        queue.add(request);
+    }
+
+    /**
+     * Actualiza la UI según el número de reseñas
+     */
+    private void actualizarUIReviews() {
+        int numReviews = listaReviews.size();
+        tvContadorReviews.setText("(" + numReviews + ")");
+
+        if (numReviews == 0) {
+            rvReviews.setVisibility(View.GONE);
+            tvNoReviews.setVisibility(View.VISIBLE);
+        } else {
+            rvReviews.setVisibility(View.VISIBLE);
+            tvNoReviews.setVisibility(View.GONE);
+            reviewAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Configura el botón para escribir una reseña
+     */
+    private void configurarBotonEscribirResena() {
+        btnEscribirResena.setOnClickListener(v -> mostrarDialogEscribirResena());
+    }
+
+    /**
+     * Muestra el dialog para escribir una nueva reseña
+     */
+    private void mostrarDialogEscribirResena() {
+        // Inflar el layout del dialog
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_escribir_resena, null);
+
+        EditText etContenido = dialogView.findViewById(R.id.etContenidoResena);
+        RatingBar ratingBar = dialogView.findViewById(R.id.ratingBarResena);
+
+        // Crear el dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("✍️ Escribe tu reseña");
+        builder.setView(dialogView);
+
+        builder.setPositiveButton("Publicar", null);
+        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Configurar el botón Publicar
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
+            String contenido = etContenido.getText().toString().trim();
+            int puntuacion = (int) ratingBar.getRating();
+
+            if (contenido.isEmpty()) {
+                Toast.makeText(this, "Escribe un comentario", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (puntuacion == 0) {
+                Toast.makeText(this, "Selecciona una puntuación", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            enviarResena(contenido, puntuacion);
+            dialog.dismiss();
+        });
+    }
+
+    /**
+     * Envía la reseña al servidor
+     */
+    private void enviarResena(String contenido, int puntuacion) {
+        // Obtener token del usuario
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
+
+        if (token.isEmpty()) {
+            Toast.makeText(this, "Debes iniciar sesión", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = "http://10.0.2.2:8000/locales/" + localId + "/reviews/";
+
+        try {
+            JSONObject body = new JSONObject();
+            body.put("token", token);
+            body.put("contenido", contenido);
+            body.put("puntuacion", puntuacion);
+
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    body,
+                    response -> {
+                        Toast.makeText(this, "¡Reseña publicada!", Toast.LENGTH_SHORT).show();
+                        cargarReviews(localId); // Recargar reseñas
+                    },
+                    error -> {
+                        Log.e(TAG, "Error al publicar reseña: " + error.toString());
+                        Toast.makeText(this, "Error al publicar reseña", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            queue.add(request);
+
+        } catch (JSONException e) {
+            Log.e(TAG, "Error al crear JSON: " + e.getMessage());
         }
     }
 }

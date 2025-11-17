@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- RatingBar para la puntuación -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntuación:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#2C3E50"
+        android:layout_marginBottom="8dp" />
+
+    <RatingBar
+        android:id="@+id/ratingBarResena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="0"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <!-- EditText para el comentario -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu comentario:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#2C3E50"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etContenidoResena"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:hint="Escribe tu opinión sobre este local..."
+        android:gravity="top|start"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
