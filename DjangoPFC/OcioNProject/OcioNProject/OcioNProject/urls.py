@@ -28,4 +28,5 @@ urlpatterns = [
     path('locales/search/', endpoints.search_locales),
     path('locales/<int:local_id>/reviews/', endpoints.reviews),
     path('reviews/user/', endpoints.user_reviews),
+    path('eventos/', endpoints.eventos),
 ]

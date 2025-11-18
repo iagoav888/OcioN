@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:contentPadding="16dp"
+    app:cardBackgroundColor="#F8F9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Icono de calendario -->
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@android:color/holo_blue_light"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvDiaEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tvMesEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DIC"
+                android:textSize="12sp"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <!-- Información del evento -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/tvTituloEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Noche de Navidad"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#2C3E50"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/tvDescripcionEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DJ internacional + efectos visuales"
+                android:textSize="14sp"
+                android:textColor="#7F8C8D"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/tvHoraEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕐 23:00"
+                android:textSize="12sp"
+                android:textColor="#34495E"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

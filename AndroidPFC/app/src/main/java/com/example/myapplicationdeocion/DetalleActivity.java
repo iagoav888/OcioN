@@ -39,24 +39,28 @@ public class DetalleActivity extends AppCompatActivity {
     private static final String TAG = "DetalleActivity";
     private TextView tvNombreDetalle, tvUbicacionDetalle, tvTipoDetalle, tvDescripcionDetalle;
     private TextView tvContadorReviews, tvNoReviews;
+    private TextView tvContadorEventos, tvNoEventos;
     private ImageView ivLocalDetalle;
     private ImageButton btnPlayPause;
     private Button btnEscribirResena;
-    private RecyclerView rvReviews;
+    private RecyclerView rvReviews, rvEventos;
     private String playlistUrl;
     private int localId;
     private RequestQueue queue;
     private List<Review> listaReviews;
+    private List<Evento> listaEventos;
     private ReviewAdapter reviewAdapter;
+    private EventoAdapter eventoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        // Inicializar RequestQueue
+        // Inicializar RequestQueue y listas
         queue = Volley.newRequestQueue(this);
         listaReviews = new ArrayList<>();
+        listaEventos = new ArrayList<>();
 
         // Inicializar vistas básicas
         tvNombreDetalle = findViewById(R.id.tvNombreDetalle);
@@ -72,10 +76,20 @@ public class DetalleActivity extends AppCompatActivity {
         btnEscribirResena = findViewById(R.id.btnEscribirResena);
         rvReviews = findViewById(R.id.rvReviews);
 
-        // Configurar RecyclerView
+        // Inicializar vistas de eventos
+        tvContadorEventos = findViewById(R.id.tvContadorEventos);
+        tvNoEventos = findViewById(R.id.tvNoEventos);
+        rvEventos = findViewById(R.id.rvEventos);
+
+        // Configurar RecyclerView de reseñas
         rvReviews.setLayoutManager(new LinearLayoutManager(this));
         reviewAdapter = new ReviewAdapter(listaReviews);
         rvReviews.setAdapter(reviewAdapter);
+
+        // Configurar RecyclerView de eventos
+        rvEventos.setLayoutManager(new LinearLayoutManager(this));
+        eventoAdapter = new EventoAdapter(listaEventos);
+        rvEventos.setAdapter(eventoAdapter);
 
         // Obtener datos del Intent
         localId = getIntent().getIntExtra("id", -1);
@@ -102,9 +116,10 @@ public class DetalleActivity extends AppCompatActivity {
         configurarBotonMusica();
         configurarBotonEscribirResena();
 
-        // Cargar reseñas del servidor
+        // Cargar reseñas y eventos del servidor
         if (localId != -1) {
             cargarReviews(localId);
+            cargarEventos(localId);
         }
     }
 
@@ -254,6 +269,49 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
     /**
+     * Carga los eventos del servidor
+     */
+    private void cargarEventos(int localId) {
+        String url = "http://10.0.2.2:8000/eventos/?local_id=" + localId;
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                response -> {
+                    try {
+                        listaEventos.clear();
+
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj = response.getJSONObject(i);
+
+                            Evento evento = new Evento(
+                                    obj.getInt("id"),
+                                    obj.getString("titulo"),
+                                    obj.optString("descripcion", ""),
+                                    obj.getString("fecha")
+                            );
+
+                            listaEventos.add(evento);
+                        }
+
+                        actualizarUIEventos();
+                        Log.d(TAG, "Eventos cargados: " + listaEventos.size());
+
+                    } catch (JSONException e) {
+                        Log.e(TAG, "Error al parsear eventos: " + e.getMessage());
+                    }
+                },
+                error -> {
+                    Log.e(TAG, "Error al cargar eventos: " + error.toString());
+                    actualizarUIEventos();
+                }
+        );
+
+        queue.add(request);
+    }
+
+    /**
      * Actualiza la UI según el número de reseñas
      */
     private void actualizarUIReviews() {
@@ -267,6 +325,23 @@ public class DetalleActivity extends AppCompatActivity {
             rvReviews.setVisibility(View.VISIBLE);
             tvNoReviews.setVisibility(View.GONE);
             reviewAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Actualiza la UI según el número de eventos
+     */
+    private void actualizarUIEventos() {
+        int numEventos = listaEventos.size();
+        tvContadorEventos.setText("(" + numEventos + ")");
+
+        if (numEventos == 0) {
+            rvEventos.setVisibility(View.GONE);
+            tvNoEventos.setVisibility(View.VISIBLE);
+        } else {
+            rvEventos.setVisibility(View.VISIBLE);
+            tvNoEventos.setVisibility(View.GONE);
+            eventoAdapter.notifyDataSetChanged();
         }
     }
 

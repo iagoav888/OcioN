@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from MiOcioNApp.models import AppUser, Local, Review
+from MiOcioNApp.models import AppUser, Local, Review, Evento
 
 
 # ------------------------------------------------------------
@@ -208,7 +208,7 @@ def reviews(request, local_id):
         if not isinstance(puntuacion, int) or puntuacion < 1 or puntuacion > 5:
             return JsonResponse({"error": "La puntuación debe ser un número entre 1 y 5"}, status=400)
 
-        # Crear la reseña (CORREGIDO: user en lugar de usuario)
+        # Crear la reseña
         review = Review.objects.create(
             user=user,
             local=local,
@@ -251,7 +251,7 @@ def user_reviews(request):
     if user is None:
         return JsonResponse({"error": "Token inválido o sesión expirada"}, status=401)
 
-    # Obtener reseñas del usuario 
+    # Obtener reseñas del usuario
     reseñas = Review.objects.filter(user=user).order_by('-fecha')
 
     data = []
@@ -263,6 +263,45 @@ def user_reviews(request):
             "contenido": review.contenido,
             "puntuacion": review.puntuacion,
             "fecha": review.fecha.strftime("%Y-%m-%d %H:%M:%S")
+        })
+
+    return JsonResponse(data, safe=False)
+
+
+# ------------------------------------------------------------
+# Endpoint: eventos
+# Lista los eventos próximos de un local específico.
+# GET: Devuelve eventos ordenados por fecha (próximos primero)
+# ------------------------------------------------------------
+def eventos(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Método HTTP no soportado"}, status=405)
+
+    # Obtener local_id desde parámetros GET
+    local_id = request.GET.get("local_id")
+
+    if not local_id:
+        return JsonResponse({"error": "Se requiere el parámetro local_id"}, status=400)
+
+    try:
+        local = Local.objects.get(id=local_id)
+    except Local.DoesNotExist:
+        return JsonResponse({"error": "Local no encontrado"}, status=404)
+
+    # Obtener eventos del local ordenados por fecha (próximos primero)
+    # Solo eventos futuros o del día actual
+    eventos_list = Evento.objects.filter(
+        local=local,
+        fecha__gte=datetime.now()
+    ).order_by('fecha')
+
+    data = []
+    for evento in eventos_list:
+        data.append({
+            "id": evento.id,
+            "titulo": evento.titulo,
+            "descripcion": evento.descripcion if evento.descripcion else "",
+            "fecha": evento.fecha.strftime("%Y-%m-%d %H:%M:%S")
         })
 
     return JsonResponse(data, safe=False)
