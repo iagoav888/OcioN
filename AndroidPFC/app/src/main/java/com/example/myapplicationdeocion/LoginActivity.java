@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                 SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("token", token);
+                                editor.putString("username", user);  // ← LÍNEA AÑADIDA
                                 editor.putBoolean("isLoggedIn", true);
                                 editor.apply();
 

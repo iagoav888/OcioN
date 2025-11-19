@@ -1,15 +1,24 @@
 package com.example.myapplicationdeocion;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;
@@ -34,10 +44,37 @@ public class MainActivity extends AppCompatActivity {
     private EditText etBuscar;
     private RequestQueue queue;
 
+    // Variables para el Navigation Drawer
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // ============ CONFIGURAR DRAWER ============
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Mostrar username en el header del menú
+        View headerView = navigationView.getHeaderView(0);
+        TextView tvHeaderUsername = headerView.findViewById(R.id.tvHeaderUsername);
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String username = prefs.getString("username", "Usuario");
+        tvHeaderUsername.setText(username);
+
 
         recyclerView = findViewById(R.id.rvLocales);
         etBuscar = findViewById(R.id.etBuscar);
@@ -56,11 +93,7 @@ public class MainActivity extends AppCompatActivity {
         cargarLocalesDesdeServidor();
     }
 
-    // Intenta cargar locales desde Django, si falla usa datos locales
     private void cargarLocalesDesdeServidor() {
-        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String token = prefs.getString("token", "");
-
         String url = "http://10.0.2.2:8000/locales/";
 
         JsonArrayRequest request = new JsonArrayRequest(
@@ -71,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         listaOriginal.clear();
 
-                        // Parsear el JSON que viene del servidor
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject obj = response.getJSONObject(i);
 
@@ -99,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    // Si no hay conexión con el servidor, usar datos hardcodeados
                     Log.e(TAG, "Error al cargar locales del servidor: " + error.toString());
                     Toast.makeText(this, "Usando datos locales (servidor no disponible)", Toast.LENGTH_SHORT).show();
                     cargarLocalesLocales();
@@ -109,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    // Datos de respaldo si el servidor no está disponible
     private void cargarLocalesLocales() {
         listaOriginal.clear();
 
@@ -124,14 +154,12 @@ public class MainActivity extends AppCompatActivity {
         actualizarLista();
     }
 
-    // Copiar todos los locales a la lista que se muestra
     private void actualizarLista() {
         listaFiltrada.clear();
         listaFiltrada.addAll(listaOriginal);
         adapter.notifyDataSetChanged();
     }
 
-    // Configurar el buscador para que filtre mientras escribes
     private void configurarBuscador() {
         etBuscar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -147,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Buscar locales que contengan el texto (sin importar mayúsculas)
     private void filtrarLocales(String texto) {
         listaFiltrada.clear();
 
@@ -162,5 +189,42 @@ public class MainActivity extends AppCompatActivity {
         }
 
         adapter.notifyDataSetChanged();
+    }
+
+    // ============ MÉTODOS DEL NAVIGATION DRAWER ============
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_inicio) {
+            Toast.makeText(this, "Ya estás en Inicio", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_mis_resenas) {
+            Intent intent = new Intent(MainActivity.this, MisResenasActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_cerrar_sesion) {
+            SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.clear();
+            editor.apply();
+
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
