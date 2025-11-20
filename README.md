@@ -144,7 +144,7 @@ La aplicación consume **9 endpoints REST** del backend Django:
 | ![GET](https://img.shields.io/badge/-GET-61affe?style=flat-square) | `/locales/<id>/` | Detalle de local |
 | ![GET](https://img.shields.io/badge/-GET-61affe?style=flat-square) | `/locales/<id>/reviews/` | Reseñas del local |
 | ![POST](https://img.shields.io/badge/-POST-49cc90?style=flat-square) | `/locales/<id>/reviews/` | Crear reseña |
-| ![POST](https://img.shields.io/badge/-POST-49cc90?style=flat-square) | `/reviews/user/` | Mis reseñas |
+| ![GET](https://img.shields.io/badge/-GET-61affe?style=flat-square) | `/reviews/user/` | Mis reseñas |
 | ![GET](https://img.shields.io/badge/-GET-61affe?style=flat-square) | `/eventos/?local_id=<id>` | Eventos del local |
 
 ### 📝 Ejemplo de Uso
