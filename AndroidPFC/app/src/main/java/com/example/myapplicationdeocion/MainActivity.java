@@ -182,7 +182,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             listaFiltrada.addAll(listaOriginal);
         } else {
             for (Local local : listaOriginal) {
-                if (local.getNombre().toLowerCase().contains(texto.toLowerCase())) {
+                String nombre = local.getNombre().toLowerCase();
+                String descripcion = local.getDescripcion() != null ? local.getDescripcion().toLowerCase() : "";
+                String busqueda = texto.toLowerCase();
+
+                if (nombre.contains(busqueda) || descripcion.contains(busqueda)) {
                     listaFiltrada.add(local);
                 }
             }
