@@ -34,8 +34,36 @@
 🎉 Eventos         →  Consulta las próximas fiestas y eventos temáticos
 🎵 Música          →  Accede directamente a las playlists de Spotify
 👤 Mi perfil       →  Gestiona todas tus reseñas desde un solo lugar
-```
 
+```
+## 📸 Capturas de Pantalla
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center"><b>Login</b></td>
+<td align="center"><b>Registro</b></td>
+<td align="center"><b>Listado de locales</b></td>
+</tr>
+<tr>
+<td><img src="screenshots/Captura de pantalla 2026-03-23 131809.png" width="200"/></td>
+<td><img src="screenshots/Captura de pantalla 2026-03-23 131821.png" width="200"/></td>
+<td><img src="screenshots/Captura de pantalla 2026-03-23 131635.png" width="200"/></td>
+</tr>
+<tr>
+<td align="center"><b>Detalle de local</b></td>
+<td align="center"><b>Reseñas y eventos</b></td>
+<td align="center"><b>Menú lateral</b></td>
+</tr>
+<tr>
+<td><img src="screenshots/Captura de pantalla 2026-03-23 131657.png" width="200"/></td>
+<td><img src="screenshots/Captura de pantalla 2026-03-23 131721.png" width="200"/></td>
+<td><img src="screenshots/Captura de pantalla 2026-03-23 131743.png" width="200"/></td>
+</tr>
+</table>
+
+</div>
 ---
 
 ## ✨ Características
